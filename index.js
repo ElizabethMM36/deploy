@@ -49,6 +49,9 @@ app.get('/api/persons/:id', (req, res) => {
     res.status(404).send({ error: "Person not found" });
   }
 });
+app.get('/', (req, res) => {
+  res.send('Welcome to the Phonebook API');
+});
 
 // Route to delete a person by ID
 app.delete('/api/persons/:id', (req, res) => {
