@@ -19,7 +19,7 @@ morgan.token('req-body', (req) => {
 app.use(morgan(":method  :url :status :res[content-length] - :response-time ms  :req-body"));
 
 // Serve React frontend build folder
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // Dummy Data
 let persons = [
@@ -58,11 +58,10 @@ app.post('/api/persons', (req, res) => {
   res.json(newPerson);
 });
 
-// Catch-All Route to Serve React Frontend
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 // Start Server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
